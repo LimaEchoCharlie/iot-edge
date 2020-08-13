@@ -1,0 +1,6 @@
+language: go
+
+go:
+  - 1.13.x
+
+script: go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
