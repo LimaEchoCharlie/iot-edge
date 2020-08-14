@@ -13,3 +13,4 @@ before_install:
 script:
   - go run ./scripts/wait-for-am-startup.go -container am -timeout 600
   - go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
+  - cat tests/thingsdk/debug/gatewayClient/AuthenticateThingJWT.log
