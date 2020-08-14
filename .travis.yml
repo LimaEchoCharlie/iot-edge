@@ -3,6 +3,9 @@ language: go
 go:
   - 1.13.x
 
+os:
+  - linux
+
 services:
   - docker
 
@@ -13,6 +16,4 @@ before_install:
 script:
   - go run ./scripts/wait-for-am-startup.go -container am -timeout 600
   - go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
-
-on_failure:
   - find tests/thingsdk/debug -type f | xargs tail -n +1
