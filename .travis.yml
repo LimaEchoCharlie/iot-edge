@@ -8,6 +8,11 @@ services:
 
 before_install:
   - docker pull gcr.io/forgerock-io/am:7.0.0
-  - docker run -e AM_ADMIN_PWD=password -e TOMCAT_INSECURE=ENABLED -p 8080:8080 gcr.io/forgerock-io/am:7.0.0
+  - docker run --name am -d -e AM_ADMIN_PWD=password -e TOMCAT_INSECURE=ENABLED -p 8080:8080 gcr.io/forgerock-io/am:7.0.0
 
-script: go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
+jobs:
+  include:
+    - stage: startup
+    script: go run ./scripts/wait-for-am-startup.go -container am -timeout 600
+    - stage: anvil
+    script: go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
