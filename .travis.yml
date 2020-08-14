@@ -11,5 +11,5 @@ before_install:
   - docker run --name am -d -e AM_ADMIN_PWD=password -e TOMCAT_INSECURE=ENABLED -p 8080:8080 gcr.io/forgerock-io/am:7.0.0
 
 script:
-  go run ./scripts/wait-for-am-startup.go -container am -timeout 600
-  go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
+  - go run ./scripts/wait-for-am-startup.go -container am -timeout 600
+  - go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
