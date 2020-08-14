@@ -12,7 +12,7 @@ before_install:
 
 jobs:
   include:
-    - stage: startup
-    script: go run ./scripts/wait-for-am-startup.go -container am -timeout 600
+    - stage: am
+      script: go run ./scripts/wait-for-am-startup.go -container am -timeout 600
     - stage: anvil
-    script: go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
+      script: go run github.com/ForgeRock/iot-edge/v7/tests/thingsdk
